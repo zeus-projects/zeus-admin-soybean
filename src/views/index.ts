@@ -11,5 +11,7 @@ export const views: Record<
   login: () => import('./_builtin/login/index.vue'),
   'not-found': () => import('./_builtin/not-found/index.vue'),
   admin_dept: () => import('./admin/dept/index.vue'),
-  admin_menu: () => import('./admin/menu/index.vue')
+  admin_menu: () => import('./admin/menu/index.vue'),
+  admin_role: () => import('./admin/role/index.vue'),
+  admin_user: () => import('./admin/user/index.vue')
 };

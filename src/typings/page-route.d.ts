@@ -24,7 +24,9 @@ declare namespace PageRoute {
     | 'not-found'
     | 'admin'
     | 'admin_dept'
-    | 'admin_menu';
+    | 'admin_menu'
+    | 'admin_role'
+    | 'admin_user';
 
   /**
    * last degree route key, which has the page file
@@ -32,6 +34,15 @@ declare namespace PageRoute {
    */
   type LastDegreeRouteKey = Extract<
     RouteKey,
-    '403' | '404' | '500' | 'constant-page' | 'login' | 'not-found' | 'admin_dept' | 'admin_menu'
+    | '403'
+    | '404'
+    | '500'
+    | 'constant-page'
+    | 'login'
+    | 'not-found'
+    | 'admin_dept'
+    | 'admin_menu'
+    | 'admin_role'
+    | 'admin_user'
   >;
 }
