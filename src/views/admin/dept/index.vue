@@ -1,16 +1,12 @@
 <template>
   <div class="overflow-hidden">
-    <n-card  :bordered="false" class="h-full rounded-8px shadow-sm">
+    <n-card :bordered="false" class="h-full rounded-8px shadow-sm">
       <div class="flex-col h-full">
         <n-space class="pb-12px" justify="space-between">
           <n-space>
             <n-button type="primary" @click="handleAddTable">
               <icon-ic-round-plus class="mr-4px text-20px" />
               新增
-            </n-button>
-            <n-button type="error">
-              <icon-ic-round-delete class="mr-4px text-20px" />
-              删除
             </n-button>
           </n-space>
           <n-space align="center" :size="18">
@@ -21,15 +17,9 @@
             <column-setting v-model:columns="columns" />
           </n-space>
         </n-space>
-        <n-data-table
-          ref="tableRef"
-          :columns="columns"
-          :data="tableData"
-          :loading="loading"
-          flex-height
-          class="flex-1-hidden"
-        />
-        <DeptForm v-model:visible="visible"/>
+        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading" flex-height
+          class="flex-1-hidden" />
+        <DeptForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
       </div>
     </n-card>
   </div>
@@ -43,6 +33,7 @@ import type { DataTableColumns } from 'naive-ui';
 import { useBoolean, useLoading } from '@/hooks';
 import { fetchDeptTree } from '@/service';
 import DeptForm from "./dept-form.vue";
+import type { ModalType } from './dept-form.vue'
 
 const { loading, startLoading, endLoading } = useLoading(false);
 const { bool: visible, setTrue: openModal } = useBoolean();
@@ -73,7 +64,7 @@ const columns: Ref<DataTableColumns<Admin.SysDept>> = ref([
           <NButton size={'small'} onClick={() => handleEditTable(row)}>
             编辑
           </NButton>
-          <NPopconfirm onPositiveClick={() => handleDeleteTable(row.id)}>
+          <NPopconfirm onPositiveClick={() => handleDeleteTable(row.name, row.id)}>
             {{
               default: () => '确认删除',
               trigger: () => <NButton size={'small'}>删除</NButton>
@@ -98,15 +89,28 @@ const getTableData = async () => {
   endLoading();
 }
 
+const modalType = ref<ModalType>('add');
+function setModalType(type: ModalType) {
+  modalType.value = type;
+}
+
+const editData = ref<Admin.SysDept | null>(null);
+function setEditData(data: Admin.SysDept | null) {
+  editData.value = data;
+}
+
 const handleAddTable = () => {
   openModal()
+  setModalType('add');
 }
+
 const handleEditTable = (row: Admin.SysDept) => {
-  openModal()
+  setEditData(row);
+  setModalType('edit');
+  openModal();
 }
 
-const handleDeleteTable = (id: Admin.SysDept['id']) => {
-  
+const handleDeleteTable = (name: Admin.SysDept['name'], id: Admin.SysDept['id']) => {
+  window.$message?.info(`已删除部门：${name}, ID 为 ${id}`);
 }
-
 </script>

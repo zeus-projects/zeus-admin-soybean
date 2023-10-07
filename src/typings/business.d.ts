@@ -25,12 +25,12 @@ declare namespace Admin {
     name: string
     parentId: number
     weight: number
-    status: string
+    status: number
     createBy?: string
     createTime?: Date
     updateBy?: string
     updateTime?: Date
-    children?: SysDept[]
+    children?: SysDept[] | null
   }
-  type status = 'enable' | 'disable'
+  type status = 0 | 1
 }

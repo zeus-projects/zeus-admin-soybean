@@ -14,3 +14,9 @@ export const userRoleLabels: Record<Auth.RoleType, string> = {
   user: '普通用户'
 };
 export const userRoleOptions = transformObjectToOption(userRoleLabels);
+
+export const statusLabels: Record<number, string> = {
+  0: '启用',
+  1: '禁用'
+};
+export const EnableStatus = transformObjectToOption(statusLabels)
