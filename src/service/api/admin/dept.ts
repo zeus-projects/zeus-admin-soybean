@@ -4,3 +4,4 @@ import { mockRequest } from '@/service/request';
 export function fetchDeptTree() {
   return mockRequest.get<Array<Admin.Dept>>('/admin/dept/tree');
 }
+

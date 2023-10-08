@@ -17,7 +17,7 @@
             <column-setting v-model:columns="columns" />
           </n-space>
         </n-space>
-        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :row-key="rowKey" :loading="loading"
+        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading"
           :pagination="pagination" />
         <TableForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
       </div>
@@ -87,9 +87,6 @@ const columns: Ref<DataTableColumns<Admin.Role>> = ref([
 ]);
 const tableRef = ref();
 const tableData = ref<any>([]);
-const rowKey = (rowData: Admin.Role) => {
-  return rowData.name
-}
 
 const pagination = reactive({
   page: 1,

@@ -44,6 +44,17 @@ const apis: MockMethod[] = [
         }
       };
     }
+  },
+  {
+    url: '/mock/admin/role',
+    method: 'get',
+    response: (): Service.MockServiceResult => {
+      return {
+        code: 200,
+        message: 'ok',
+        data: tableData
+      };
+    }
   }
 ];
 

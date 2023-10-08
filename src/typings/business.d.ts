@@ -20,20 +20,19 @@ declare namespace Auth {
 }
 
 declare namespace Admin {
-  type EnableStatus = 0 | 1
-
   interface Dept {
     id: number
     name: string
     parentId: number
     weight: number
-    status: number
+    status: EnableStatus
     createBy?: string
     createTime?: Date
     updateBy?: string
     updateTime?: Date
     children?: Dept[] | null
   }
+  type EnableStatus = 0 | 1
 
   interface Menu {
     id: number
@@ -50,7 +49,6 @@ declare namespace Admin {
     updateTime?: Date
     children?: Menu[] | null
   }
-
   type MenuType = 0 | 1
   
   interface Role {
@@ -58,7 +56,7 @@ declare namespace Admin {
     name: string
     permission?: string
     desc?: string
-    dataScopeType?: number
+    dataScopeType?: RoleDataScopeType
     dataScope?: number[]
     createBy?: string
     createTime?: Date
@@ -67,4 +65,26 @@ declare namespace Admin {
   }
 
   type RoleDataScopeType = 0 | 1 | 2 | 3 | 4
+
+  interface User {
+    id: number
+    username: string
+    name: string
+    nickname?: string
+    password?: string
+    gender: UserGender
+    deptId: number
+    phone?: string
+    email?: string
+    avatar?: string
+    status: UserStatus
+    salt?: string
+    roleList?: number[]
+    createBy?: string
+    createTime?: Date
+    updateBy?: string
+    updateTime?: Date
+  }
+  type UserGender = 0 | 1
+  type UserStatus = 0 | 1
 }
