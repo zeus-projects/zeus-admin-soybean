@@ -21,3 +21,14 @@ declare namespace ApiRoute {
     home: AuthRoute.AllRouteKey;
   }
 }
+
+declare namespace Api {
+
+  interface Page<T> {
+    current: number
+    size: number
+    total?: number
+    records?: T[]
+  }
+  
+}

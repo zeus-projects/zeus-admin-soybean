@@ -37,7 +37,7 @@ const adminMenu = {
       component: 'self',
       meta: {
         title: '角色管理',
-        i18nTitle: 'message.routes.admin.menu',
+        i18nTitle: 'message.routes.admin.role',
         requiresAuth: true,
         icon: 'carbon:user-role'
       }

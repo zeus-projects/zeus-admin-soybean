@@ -36,3 +36,26 @@ export const MenuType = [
     value: 1
   }
 ]
+
+export const RoleDataScopeType = [
+  {
+    label: '全部',
+    value: 0
+  },
+  {
+    label: '自定义',
+    value: 1
+  },
+  {
+    label: '本级及子级',
+    value: 2
+  },
+  {
+    label: '本级',
+    value: 3
+  },
+  {
+    label: '本人',
+    value: 4
+  }
+]
