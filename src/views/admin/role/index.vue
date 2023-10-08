@@ -18,7 +18,7 @@
           </n-space>
         </n-space>
         <n-data-table ref="tableRef" :columns="columns" :data="tableData" :row-key="rowKey" :loading="loading"
-           />
+          :pagination="pagination" />
         <TableForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
       </div>
     </n-card>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="tsx">
-import { ref, onMounted } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import type { Ref } from 'vue';
 import { NSpace, NButton, NPopconfirm, NDataTable, NTag } from 'naive-ui';
 import type { DataTableColumns } from 'naive-ui';
@@ -60,7 +60,7 @@ const columns: Ref<DataTableColumns<Admin.Role>> = ref([
         return item.value === row.dataScopeType
       })
       return (
-        <NTag type='primary'>{ obj?.label }</NTag>
+        <NTag type='primary'>{obj?.label}</NTag>
       )
     }
   },
@@ -91,13 +91,27 @@ const rowKey = (rowData: Admin.Role) => {
   return rowData.name
 }
 
+const pagination = reactive({
+  page: 1,
+  pageSize: 10,
+  showSizePicker: true,
+  pageSizes: [10, 20, 30, 40 ,50],
+  onChange: (page: number) => {
+    pagination.page = page
+  },
+  onUpdatePageSize: (pageSize: number) => {
+    pagination.pageSize = pageSize
+    pagination.page = 1
+  }
+})
+
 onMounted(() => {
   getTableData()
 });
 
 const getTableData = async () => {
   startLoading();
-  const { data } = await fetchRolePage();
+  const { data } = await fetchRolePage(pagination);
   tableData.value = data!.records;
   endLoading();
 }
