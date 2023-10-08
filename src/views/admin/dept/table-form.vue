@@ -33,7 +33,7 @@ import { EnableStatus } from '@/constants/business'
 export interface Props {
   visible: boolean;
   type?: 'add' | 'edit';
-  editData?: Admin.SysDept | null;
+  editData?: Admin.Dept | null;
 }
 
 export type ModalType = NonNullable<Props['type']>;
@@ -61,15 +61,15 @@ const closeModal = () => {
 
 const title = computed(() => {
   const titles: Record<ModalType, string> = {
-    add: '添加部门',
-    edit: '编辑部门'
+    add: '添加菜单',
+    edit: '编辑菜单'
   };
   return titles[props.type];
 });
 
 const formRef = ref<HTMLElement & FormInst>();
 
-type FormModel = Pick<Admin.SysDept, 'parentId' | 'name' | 'weight' | 'status'>;
+type FormModel = Pick<Admin.Dept, 'parentId' | 'name' | 'weight' | 'status'>;
 const formModel = reactive<FormModel>(createDefaultFormModel())
 function createDefaultFormModel(): FormModel {
   return {
@@ -120,7 +120,6 @@ watch(
   () => props.visible,
   newValue => {
     if (newValue) {
-      console.log('ModalType: ', newValue);
       handleUpdateFormModelByModalType();
     }
   }

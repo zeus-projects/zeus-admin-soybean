@@ -5,7 +5,7 @@ const adminMenu = {
   meta: {
     title: '系统管理',
     i18nTitle: 'message.routes.admin._value',
-    icon: 'carbon:menu',
+    icon: 'carbon:cloud-service-management',
     order: 8
   },
   children: [
@@ -17,7 +17,7 @@ const adminMenu = {
         title: '部门管理',
         i18nTitle: 'message.routes.admin.dept',
         requiresAuth: true,
-        icon: 'mdi:menu'
+        icon: 'mingcute:department-fill'
       }
     },
     {
@@ -28,7 +28,29 @@ const adminMenu = {
         title: '菜单管理',
         i18nTitle: 'message.routes.admin.menu',
         requiresAuth: true,
-        icon: 'mdi:menu'
+        icon: 'ep:menu'
+      }
+    },
+    {
+      name: 'admin_role',
+      path: '/admin/role',
+      component: 'self',
+      meta: {
+        title: '角色管理',
+        i18nTitle: 'message.routes.admin.menu',
+        requiresAuth: true,
+        icon: 'carbon:user-role'
+      }
+    },
+    {
+      name: 'admin_user',
+      path: '/admin/user',
+      component: 'self',
+      meta: {
+        title: '用户管理',
+        i18nTitle: 'message.routes.admin.user',
+        requiresAuth: true,
+        icon: 'ic:round-manage-accounts'
       }
     }
   ]

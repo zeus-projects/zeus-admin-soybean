@@ -20,7 +20,9 @@ declare namespace Auth {
 }
 
 declare namespace Admin {
-  interface SysDept {
+  type enableStatus = 0 | 1
+
+  interface Dept {
     id: number
     name: string
     parentId: number
@@ -30,7 +32,23 @@ declare namespace Admin {
     createTime?: Date
     updateBy?: string
     updateTime?: Date
-    children?: SysDept[] | null
+    children?: Dept[] | null
   }
-  type status = 0 | 1
+
+  type menuType = 0 | 1
+  interface Menu {
+    id: number
+    type: number
+    name: string
+    parentId: number
+    weight: number
+    icon?: string
+    path?: string
+    permission?: string
+    createBy?: string
+    createTime?: Date
+    updateBy?: string
+    updateTime?: Date
+    children?: Menu[] | null
+  }
 }

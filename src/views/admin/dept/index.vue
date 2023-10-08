@@ -17,9 +17,9 @@
             <column-setting v-model:columns="columns" />
           </n-space>
         </n-space>
-        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading" flex-height
+        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :row-key="rowKey" :loading="loading" flex-height
           class="flex-1-hidden" />
-        <DeptForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
+        <TableForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
       </div>
     </n-card>
   </div>
@@ -32,13 +32,13 @@ import { NSpace, NButton, NPopconfirm, NDataTable } from 'naive-ui';
 import type { DataTableColumns } from 'naive-ui';
 import { useBoolean, useLoading } from '@/hooks';
 import { fetchDeptTree } from '@/service';
-import DeptForm from "./dept-form.vue";
-import type { ModalType } from './dept-form.vue'
+import TableForm from "./table-form.vue";
+import type { ModalType } from './table-form.vue'
 
 const { loading, startLoading, endLoading } = useLoading(false);
 const { bool: visible, setTrue: openModal } = useBoolean();
 
-const columns: Ref<DataTableColumns<Admin.SysDept>> = ref([
+const columns: Ref<DataTableColumns<Admin.Dept>> = ref([
   {
     title: '部门名称',
     key: 'name'
@@ -61,13 +61,13 @@ const columns: Ref<DataTableColumns<Admin.SysDept>> = ref([
     render: row => {
       return (
         <NSpace justify={'center'}>
-          <NButton size={'small'} onClick={() => handleEditTable(row)}>
+          <NButton size={'small'} type='info' quaternary onClick={() => handleEditTable(row)}>
             编辑
           </NButton>
           <NPopconfirm onPositiveClick={() => handleDeleteTable(row.name, row.id)}>
             {{
               default: () => '确认删除',
-              trigger: () => <NButton size={'small'}>删除</NButton>
+              trigger: () => <NButton size={'small'} type='error' quaternary>删除</NButton>
             }}
           </NPopconfirm>
         </NSpace>
@@ -77,6 +77,9 @@ const columns: Ref<DataTableColumns<Admin.SysDept>> = ref([
 ]);
 const tableRef = ref();
 const tableData = ref<any>([]);
+const rowKey = (rowData: Admin.Dept) => {
+  return rowData.name
+}
 
 onMounted(() => {
   getTableData()
@@ -94,8 +97,8 @@ function setModalType(type: ModalType) {
   modalType.value = type;
 }
 
-const editData = ref<Admin.SysDept | null>(null);
-function setEditData(data: Admin.SysDept | null) {
+const editData = ref<Admin.Dept | null>(null);
+function setEditData(data: Admin.Dept | null) {
   editData.value = data;
 }
 
@@ -104,13 +107,13 @@ const handleAddTable = () => {
   setModalType('add');
 }
 
-const handleEditTable = (row: Admin.SysDept) => {
+const handleEditTable = (row: Admin.Dept) => {
   setEditData(row);
   setModalType('edit');
   openModal();
 }
 
-const handleDeleteTable = (name: Admin.SysDept['name'], id: Admin.SysDept['id']) => {
+const handleDeleteTable = (name: Admin.Dept['name'], id: Admin.Dept['id']) => {
   window.$message?.info(`已删除部门：${name}, ID 为 ${id}`);
 }
 </script>
