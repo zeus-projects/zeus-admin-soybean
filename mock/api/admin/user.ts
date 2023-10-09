@@ -8,7 +8,7 @@ const tableData: Admin.User[] = [
     nickname: '小三',
     password: '',
     phone: '18366666666',
-    gender: 0,
+    gender: 1,
     deptId: 1,
     status: 0,
     roleList: [1]

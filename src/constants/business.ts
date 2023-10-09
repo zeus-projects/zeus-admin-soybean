@@ -59,3 +59,14 @@ export const RoleDataScopeType = [
     value: 4
   }
 ]
+
+export const GenderType = [
+  {
+    label: '女',
+    value: 0
+  },
+  {
+    label: '男',
+    value: 1
+  }
+]

@@ -22,10 +22,13 @@
           <n-input v-model:value="formModel.email" />
         </n-form-item-grid-item>
         <n-form-item-grid-item :span="12" label="角色" path="roleList">
-          <n-select v-model:value="formModel.roleList" :options="roleOptions" value-field="id" label-field="name"/>
+          <n-select v-model:value="formModel.roleList" :options="roleOptions" value-field="id" label-field="name" multiple/>
         </n-form-item-grid-item>
         <n-form-item-grid-item :span="12" label="所属部门" path="deptId">
           <n-tree-select v-model:value="formModel.deptId" :options="deptOptions" key-field="id" label-field="name" checkable default-expand-all/>
+        </n-form-item-grid-item>
+        <n-form-item-grid-item :span="12" label="性别" path="gender">
+          <n-select v-model:value="formModel.gender" :options="GenderType"/>
         </n-form-item-grid-item>
         <n-form-item-grid-item :span="12" label="状态" path="status">
           <n-select v-model:value="formModel.status" :options="EnableStatus"/>
@@ -43,7 +46,7 @@ import { ref, computed, reactive, watch } from 'vue';
 import type { FormInst } from 'naive-ui';
 import { createRequiredFormRule, requiredFormRule, formRules } from '@/utils';
 import { fetchRoleList, fetchDeptTree } from '@/service';
-import { EnableStatus } from '@/constants';
+import { EnableStatus, GenderType } from '@/constants';
 
 export interface Props {
   visible: boolean;
@@ -92,7 +95,7 @@ function createDefaultFormModel(): Admin.User {
     password: '',
     phone: '',
     email: '',
-    gender: 0,
+    gender: 1,
     deptId: 0,
     status: 0,
     roleList: []

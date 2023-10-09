@@ -6,7 +6,7 @@ const adminMenu = {
     title: '系统管理',
     i18nTitle: 'message.routes.admin._value',
     icon: 'carbon:cloud-service-management',
-    order: 8
+    order: 1
   },
   children: [
     {

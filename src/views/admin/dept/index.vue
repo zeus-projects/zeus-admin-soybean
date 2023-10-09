@@ -17,8 +17,8 @@
             <column-setting v-model:columns="columns" />
           </n-space>
         </n-space>
-        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :row-key="rowKey" :loading="loading" flex-height
-          class="flex-1-hidden" />
+        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :row-key="(row: Admin.Dept) => row.name"
+          :loading="loading" flex-height class="flex-1-hidden" default-expand-all />
         <TableForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
       </div>
     </n-card>
@@ -45,10 +45,7 @@ const columns: Ref<DataTableColumns<Admin.Dept>> = ref([
   },
   {
     title: '排序',
-    key: 'weight',
-    sorter: (row1, row2) => {
-      return row1.weight - row2.weight;
-    }
+    key: 'weight'
   },
   {
     title: '创建时间',
@@ -77,9 +74,6 @@ const columns: Ref<DataTableColumns<Admin.Dept>> = ref([
 ]);
 const tableRef = ref();
 const tableData = ref<any>([]);
-const rowKey = (rowData: Admin.Dept) => {
-  return rowData.name
-}
 
 onMounted(() => {
   getTableData()

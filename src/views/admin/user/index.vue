@@ -3,9 +3,11 @@
     <n-grid :x-gap="16" :y-gap="16" :item-responsive="true">
       <n-grid-item span="0:24 640:24 1024:4">
         <n-card :bordered="false" class="h-full rounded-8px shadow-sm">
-          <n-input placeholder="请输入部门名称" v-model:value="pattern" />
-          <n-tree :data="deptOptions" key-field="id" label-field="name" :node-props="nodeProps" :pattern="pattern"
-            default-expand-all selectable block-line cancelable />
+          <n-space vertical>
+              <n-input placeholder="请输入部门名称" v-model:value="pattern" />
+              <n-tree :data="deptOptions" key-field="id" label-field="name" :node-props="nodeProps" :pattern="pattern"
+                default-expand-all selectable block-line cancelable />
+          </n-space>
         </n-card>
       </n-grid-item>
       <n-grid-item span="0:24 640:24 1024:20">
@@ -26,7 +28,8 @@
                 <column-setting v-model:columns="columns" />
               </n-space>
             </n-space>
-            <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading" :pagination="pagination"/>
+            <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading"
+              :pagination="pagination" />
             <TableForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
           </div>
         </n-card>
