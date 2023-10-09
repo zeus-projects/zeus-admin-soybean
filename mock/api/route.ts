@@ -7,11 +7,8 @@ const apis: MockMethod[] = [
     method: 'post',
     response: (options: Service.MockOption): Service.MockServiceResult => {
       const { userId = undefined } = options.body;
-
-      const routeHomeName: AuthRoute.LastDegreeRouteKey = 'multi-menu_first_second';
-
+      // const routeHomeName: AuthRoute.LastDegreeRouteKey = 'multi-menu_first_second';
       const role = userModel.find(item => item.userId === userId)?.userRole || 'user';
-
       const filterRoutes = routeModel[role];
 
       return {
@@ -19,7 +16,7 @@ const apis: MockMethod[] = [
         message: 'ok',
         data: {
           routes: filterRoutes,
-          home: routeHomeName
+          home: ''
         }
       };
     }
