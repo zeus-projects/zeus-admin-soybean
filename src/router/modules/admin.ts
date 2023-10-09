@@ -6,7 +6,7 @@ const adminMenu: AuthRoute.Route = {
     title: '系统管理',
     i18nTitle: 'message.routes.admin._value',
     icon: 'carbon:cloud-service-management',
-    order: 1
+    order: 2
   },
   children: [
     {
