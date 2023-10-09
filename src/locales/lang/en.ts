@@ -17,7 +17,7 @@ const locale: LocaleMessages<I18nType.Schema> = {
         vite: 'Vite Document',
         naive: 'NaiveUI Document',
         project: 'Project Document',
-        'project-link': 'Project Document(href)'
+        project_link: 'Project Document(href)'
       },
       component: {
         _value: 'Component',

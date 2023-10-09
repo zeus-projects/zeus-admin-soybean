@@ -17,7 +17,7 @@ const locale: LocaleMessages<I18nType.Schema> = {
         vite: 'Vite文档',
         naive: 'NaiveUI文档',
         project: '项目文档',
-        'project-link': '项目文档(外链)'
+        project_link: '项目文档(外链)'
       },
       component: {
         _value: '组件示例',

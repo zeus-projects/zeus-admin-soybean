@@ -13,5 +13,6 @@ export const views: Record<
   admin_dept: () => import('./admin/dept/index.vue'),
   admin_menu: () => import('./admin/menu/index.vue'),
   admin_role: () => import('./admin/role/index.vue'),
-  admin_user: () => import('./admin/user/index.vue')
+  admin_user: () => import('./admin/user/index.vue'),
+  document_internal: () => import('./document/internal/index.vue')
 };

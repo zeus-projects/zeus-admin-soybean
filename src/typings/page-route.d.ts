@@ -26,7 +26,9 @@ declare namespace PageRoute {
     | 'admin_dept'
     | 'admin_menu'
     | 'admin_role'
-    | 'admin_user';
+    | 'admin_user'
+    | 'document'
+    | 'document_internal';
 
   /**
    * last degree route key, which has the page file
@@ -44,5 +46,6 @@ declare namespace PageRoute {
     | 'admin_menu'
     | 'admin_role'
     | 'admin_user'
+    | 'document_internal'
   >;
 }

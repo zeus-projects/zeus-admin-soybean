@@ -320,7 +320,7 @@ declare namespace I18nType {
         vite: string;
         naive: string;
         project: string;
-        'project-link': string;
+        project_link: string;
       };
       component: {
         _value: string;

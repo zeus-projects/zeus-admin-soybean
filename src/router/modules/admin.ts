@@ -1,4 +1,4 @@
-const adminMenu = {
+const adminMenu: AuthRoute.Route = {
   name: 'admin',
   path: '/admin',
   component: 'basic',
