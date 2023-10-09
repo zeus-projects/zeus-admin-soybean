@@ -10,14 +10,14 @@ const adminMenu: AuthRoute.Route = {
   },
   children: [
     {
-      name: 'admin_dept',
-      path: '/admin/dept',
+      name: 'admin_user',
+      path: '/admin/user',
       component: 'self',
       meta: {
-        title: '部门管理',
-        i18nTitle: 'message.routes.admin.dept',
+        title: '用户管理',
+        i18nTitle: 'message.routes.admin.user',
         requiresAuth: true,
-        icon: 'mingcute:department-fill'
+        icon: 'ic:round-manage-accounts'
       }
     },
     {
@@ -43,16 +43,16 @@ const adminMenu: AuthRoute.Route = {
       }
     },
     {
-      name: 'admin_user',
-      path: '/admin/user',
+      name: 'admin_dept',
+      path: '/admin/dept',
       component: 'self',
       meta: {
-        title: '用户管理',
-        i18nTitle: 'message.routes.admin.user',
+        title: '部门管理',
+        i18nTitle: 'message.routes.admin.dept',
         requiresAuth: true,
-        icon: 'ic:round-manage-accounts'
+        icon: 'mingcute:department-fill'
       }
-    }
+    },
   ]
 };
 

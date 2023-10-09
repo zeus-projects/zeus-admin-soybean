@@ -19,17 +19,17 @@ declare namespace PageRoute {
     | '403'
     | '404'
     | '500'
+    | 'constant-page'
+    | 'login'
+    | 'not-found'
     | 'admin'
     | 'admin_dept'
     | 'admin_menu'
     | 'admin_role'
     | 'admin_user'
-    | 'constant-page'
     | 'dashborad'
     | 'document'
-    | 'document_internal'
-    | 'login'
-    | 'not-found';
+    | 'document_internal';
 
   /**
    * last degree route key, which has the page file
@@ -40,14 +40,14 @@ declare namespace PageRoute {
     | '403'
     | '404'
     | '500'
+    | 'constant-page'
+    | 'login'
+    | 'not-found'
     | 'admin_dept'
     | 'admin_menu'
     | 'admin_role'
     | 'admin_user'
-    | 'constant-page'
     | 'dashborad'
     | 'document_internal'
-    | 'login'
-    | 'not-found'
   >;
 }
