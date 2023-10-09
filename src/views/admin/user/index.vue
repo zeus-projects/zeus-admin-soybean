@@ -98,7 +98,7 @@ const columns: Ref<DataTableColumns<Admin.User>> = ref([
     align: 'center',
     render: row => {
       return (
-        <NSpace justify={'start'}>
+        <NSpace justify={'center'}>
           <NButton size={'small'} type='info' quaternary onClick={() => handleEditTable(row)}>
             编辑
           </NButton>
