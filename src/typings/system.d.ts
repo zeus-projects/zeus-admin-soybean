@@ -322,40 +322,6 @@ declare namespace I18nType {
         project: string;
         project_link: string;
       };
-      component: {
-        _value: string;
-        button: string;
-        card: string;
-        table: string;
-      };
-      plugin: {
-        _value: string;
-        charts: {
-          _value: string;
-          antv: string;
-          echarts: string;
-        };
-        copy: string;
-        editor: {
-          _value: string;
-          markdown: string;
-          quill: string;
-        };
-        icon: string;
-        map: string;
-        print: string;
-        swiper: string;
-        video: string;
-      };
-      'auth-demo': {
-        _value: string;
-        permission: string;
-        super: string;
-      };
-      function: {
-        _value: string;
-        tab: string;
-      };
       exception: {
         _value: string;
         403: string;
@@ -369,7 +335,6 @@ declare namespace I18nType {
         user: string;
         role: string;
       };
-      about: string;
     };
   }
 }

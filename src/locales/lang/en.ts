@@ -19,40 +19,6 @@ const locale: LocaleMessages<I18nType.Schema> = {
         project: 'Project Document',
         project_link: 'Project Document(href)'
       },
-      component: {
-        _value: 'Component',
-        button: 'Button',
-        card: 'Card',
-        table: 'Table'
-      },
-      plugin: {
-        _value: 'Plugin',
-        charts: {
-          _value: 'Chart',
-          echarts: 'ECharts',
-          antv: 'AntV'
-        },
-        copy: 'Copy',
-        editor: {
-          _value: 'Editor',
-          quill: 'Quill',
-          markdown: 'Markdown'
-        },
-        icon: 'Icon',
-        map: 'Map',
-        print: 'Print',
-        swiper: 'Swiper',
-        video: 'Video'
-      },
-      'auth-demo': {
-        _value: 'Auth Demo',
-        permission: 'Toggle Permission',
-        super: 'Super Auth'
-      },
-      function: {
-        _value: 'Function',
-        tab: 'System Tab'
-      },
       exception: {
         _value: 'Exception',
         403: '403',
@@ -65,8 +31,7 @@ const locale: LocaleMessages<I18nType.Schema> = {
         menu: 'Menu',
         user: 'User',
         role: 'Role'
-      },
-      about: 'About'
+      }
     }
   }
 };
