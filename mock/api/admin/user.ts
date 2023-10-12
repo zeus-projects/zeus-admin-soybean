@@ -4,26 +4,26 @@ const tableData: Admin.User[] = [
   {
     id: 1,
     username: 'admin',
-    name: '张三',
+    fullname: '张三',
     nickname: '小三',
     password: '',
     phone: '18366666666',
     gender: 1,
     deptId: 1,
     status: 0,
-    roleList: [1]
+    roles: [1]
   },
   {
     id: 2,
     username: 'test',
-    name: '李四',
+    fullname: '李四',
     nickname: '小四',
     password: '',
     phone: '18388888888',
     gender: 0,
     deptId: 2,
     status: 1,
-    roleList: [2]
+    roles: [2]
   }
 ]
 
@@ -33,7 +33,7 @@ const apis: MockMethod[] = [
     method: 'get',
     response: (): Service.MockServiceResult => {
       return {
-        code: 200,
+        code: '00000',
         message: 'ok',
         data: {
           current: 1,

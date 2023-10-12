@@ -13,7 +13,7 @@ const apis: MockMethod[] = [
     method: 'post',
     response: (): Service.MockServiceResult<boolean> => {
       return {
-        code: 200,
+        code: '00000',
         message: 'ok',
         data: true
       };
@@ -38,7 +38,7 @@ const apis: MockMethod[] = [
 
       if (findItem) {
         return {
-          code: 200,
+          code: '00000',
           message: 'ok',
           data: {
             token: findItem.token,
@@ -85,7 +85,7 @@ const apis: MockMethod[] = [
 
       if (isInUser) {
         return {
-          code: 200,
+          code: '00000',
           message: 'ok',
           data: userInfo
         };
@@ -108,7 +108,7 @@ const apis: MockMethod[] = [
 
       if (findItem) {
         return {
-          code: 200,
+          code: '00000',
           message: 'ok',
           data: {
             token: findItem.token,

@@ -34,7 +34,7 @@ const apis: MockMethod[] = [
     method: 'get',
     response: (): Service.MockServiceResult => {
       return {
-        code: 200,
+        code: '00000',
         message: 'ok',
         data: {
           current: 1,
@@ -50,7 +50,7 @@ const apis: MockMethod[] = [
     method: 'get',
     response: (): Service.MockServiceResult => {
       return {
-        code: 200,
+        code: '00000',
         message: 'ok',
         data: tableData
       };

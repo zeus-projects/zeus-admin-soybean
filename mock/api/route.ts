@@ -12,7 +12,7 @@ const apis: MockMethod[] = [
       const filterRoutes = routeModel[role];
 
       return {
-        code: 200,
+        code: '00000',
         message: 'ok',
         data: {
           routes: filterRoutes,
