@@ -12,9 +12,6 @@
         <n-form-item-grid-item :span="12" label="排序" path="weight">
           <n-input-number v-model:value="formModel.weight" clearable />
         </n-form-item-grid-item>
-        <n-form-item-grid-item :span="12" label="状态" path="status">
-          <n-select v-model:value="formModel.status" :options="EnableStatus" />
-        </n-form-item-grid-item>
       </n-grid>
       <n-space class="w-full pt-16px" :size="24" justify="end">
         <n-button class="w-72px" @click="closeModal">取消</n-button>
@@ -28,7 +25,6 @@ import { ref, computed, reactive, watch } from 'vue';
 import type { FormInst } from 'naive-ui';
 import { createRequiredFormRule } from '@/utils';
 import { fetchDeptTree } from '@/service';
-import { EnableStatus } from '@/constants/business'
 
 export interface Props {
   visible: boolean;
@@ -69,14 +65,13 @@ const title = computed(() => {
 
 const formRef = ref<HTMLElement & FormInst>();
 
-type FormModel = Pick<Admin.Dept, 'parentId' | 'name' | 'weight' | 'status'>;
+type FormModel = Pick<Admin.Dept, 'parentId' | 'name' | 'weight'>;
 const formModel = reactive<FormModel>(createDefaultFormModel())
 function createDefaultFormModel(): FormModel {
   return {
     parentId: 0,
     name: '',
-    weight: 0,
-    status: 0
+    weight: 0
   };
 }
 

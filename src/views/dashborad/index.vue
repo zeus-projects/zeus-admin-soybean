@@ -1,13 +1,9 @@
 <template>
-  <div class="h-full">
-    这是一个首页
-  </div>
+  <n-space :vertical="true" :size="16">
+  </n-space>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-
-
 </script>
 
 <style scoped></style>

@@ -17,7 +17,8 @@ const adminMenu: AuthRoute.Route = {
         title: '用户管理',
         i18nTitle: 'message.routes.admin.user',
         requiresAuth: true,
-        icon: 'ic:round-manage-accounts'
+        icon: 'ic:round-manage-accounts',
+        affix: true
       }
     },
     {

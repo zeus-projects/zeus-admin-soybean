@@ -25,11 +25,10 @@ declare namespace Admin {
     name: string
     parentId: number
     weight: number
-    status: EnableStatus
     createBy?: string
-    createTime?: Date
+    createTime?: Date | string
     updateBy?: string
-    updateTime?: Date
+    updateTime?: Date | string
     children?: Dept[] | null
   }
   type EnableStatus = 0 | 1
@@ -44,9 +43,9 @@ declare namespace Admin {
     path?: string
     permission?: string
     createBy?: string
-    createTime?: Date
+    createTime?: Date | string
     updateBy?: string
-    updateTime?: Date
+    updateTime?: Date | string
     children?: Menu[] | null
   }
   type MenuType = 0 | 1
@@ -55,35 +54,37 @@ declare namespace Admin {
     id: number
     name: string
     permission?: string
+    type: RoleType
     desc?: string
     dataScopeType?: RoleDataScopeType
     dataScope?: number[]
+    menus: number[]
     createBy?: string
-    createTime?: Date
+    createTime?: Date | string
     updateBy?: string
-    updateTime?: Date
+    updateTime?: Date | string
   }
-
+  type RoleType = 0 | 1
   type RoleDataScopeType = 0 | 1 | 2 | 3 | 4
 
   interface User {
     id: number
     username: string
-    name: string
+    fullname: string
     nickname?: string
     password?: string
     gender: UserGender
-    deptId: number
     phone?: string
     email?: string
     avatar?: string
+    birthday?: number
     status: UserStatus
-    salt?: string
-    roleList?: number[]
+    deptId: number
+    roles?: number[]
     createBy?: string
-    createTime?: Date
+    createTime?: Date | string
     updateBy?: string
-    updateTime?: Date
+    updateTime?: Date | string
   }
   type UserGender = 0 | 1
   type UserStatus = 0 | 1

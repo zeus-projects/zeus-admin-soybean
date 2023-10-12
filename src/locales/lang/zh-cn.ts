@@ -26,7 +26,7 @@ const locale: LocaleMessages<I18nType.Schema> = {
         500: '500'
       },
       admin: {
-        _value: '系统管理',
+        _value: '权限管理',
         dept: '部门管理',
         menu: '菜单管理',
         user: '用户管理',

@@ -9,20 +9,14 @@
         <n-form-item-grid-item :span="12" label="密码" path="password">
           <n-input type="password" v-model:value="formModel.password" />
         </n-form-item-grid-item>
-        <n-form-item-grid-item :span="12" label="真实姓名" path="name">
-          <n-input v-model:value="formModel.name" />
-        </n-form-item-grid-item>
-        <n-form-item-grid-item :span="12" label="昵称" path="nickname">
-          <n-input v-model:value="formModel.nickname" />
+        <n-form-item-grid-item :span="12" label="真实姓名" path="fullname">
+          <n-input v-model:value="formModel.fullname" />
         </n-form-item-grid-item>
         <n-form-item-grid-item :span="12" label="手机号码" path="phone">
           <n-input v-model:value="formModel.phone" />
         </n-form-item-grid-item>
-        <n-form-item-grid-item :span="12" label="邮箱" path="email">
-          <n-input v-model:value="formModel.email" />
-        </n-form-item-grid-item>
-        <n-form-item-grid-item :span="12" label="角色" path="roleList">
-          <n-select v-model:value="formModel.roleList" :options="roleOptions" value-field="id" label-field="name" multiple/>
+        <n-form-item-grid-item :span="12" label="角色" path="roles">
+          <n-select v-model:value="formModel.roles" :options="roleOptions" value-field="id" label-field="name" multiple/>
         </n-form-item-grid-item>
         <n-form-item-grid-item :span="12" label="所属部门" path="deptId">
           <n-tree-select v-model:value="formModel.deptId" :options="deptOptions" key-field="id" label-field="name" checkable default-expand-all/>
@@ -32,6 +26,15 @@
         </n-form-item-grid-item>
         <n-form-item-grid-item :span="12" label="状态" path="status">
           <n-select v-model:value="formModel.status" :options="EnableStatus"/>
+        </n-form-item-grid-item>
+        <n-form-item-grid-item :span="12" label="昵称" path="nickname">
+          <n-input v-model:value="formModel.nickname" />
+        </n-form-item-grid-item>
+        <n-form-item-grid-item :span="12" label="邮箱" path="email">
+          <n-input v-model:value="formModel.email" />
+        </n-form-item-grid-item>
+        <n-form-item-grid-item :span="12" label="生日" path="birthday">
+          <n-date-picker v-model:value="formModel.birthday" type="date" />
         </n-form-item-grid-item>
       </n-grid>
       <n-space class="w-full pt-16px" :size="24" justify="end">
@@ -90,24 +93,25 @@ function createDefaultFormModel(): Admin.User {
   return {
     id: 1,
     username: '',
-    name: '',
+    fullname: '',
     nickname: '',
     password: '',
     phone: '',
     email: '',
+    birthday: (new Date()).valueOf(),
     gender: 1,
     deptId: 0,
     status: 0,
-    roleList: []
+    roles: []
   };
 }
 const rules = {
   username: createRequiredFormRule('请输入用户名'),
   password: formRules.pwd,
-  name: createRequiredFormRule('请输入真实姓名'),
+  fullname: createRequiredFormRule('请输入真实姓名'),
   phone: formRules.phone,
   email: formRules.email,
-  roleList: createRequiredFormRule('请选择用户角色'),
+  roles: createRequiredFormRule('请选择用户角色'),
   deptId: createRequiredFormRule('请选择用户所属部门'),
   status: requiredFormRule,
 };

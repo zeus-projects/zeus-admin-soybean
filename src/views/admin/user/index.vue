@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-hidden">
-    <n-grid :x-gap="16" :y-gap="16" :item-responsive="true">
+      <n-grid :x-gap="16" :y-gap="16" :item-responsive="true">
       <n-grid-item span="0:24 640:24 1024:4">
         <n-card :bordered="false" class="h-full rounded-8px shadow-sm">
           <n-space vertical>
@@ -13,6 +13,23 @@
       <n-grid-item span="0:24 640:24 1024:20">
         <n-card :bordered="false" class="h-full rounded-8px shadow-sm">
           <div class="flex-col h-full">
+            <!-- 搜索表单 -->
+            <n-form inline label-placement="left" :label-width="60">
+                <n-form-item label="用户名" path="searchModel.username">
+                  <n-input  placeholder="请输入用户名" clearable/>
+                </n-form-item>
+                <n-form-item>
+                  <n-space class="pb-12px" justify="end">
+                    <n-button type="primary" @click="getTableData()">
+                      <icon-fe-search class="mr-4px text-20px"/>查询
+                    </n-button>
+                    <n-button @click="getTableData()">
+                      <icon-mdi-refresh class="mr-4px text-20px"/>重置
+                    </n-button>
+                  </n-space>
+                </n-form-item>
+            </n-form>
+            <!-- 操作 -->
             <n-space class="pb-12px" justify="space-between">
               <n-space>
                 <n-button type="primary" @click="handleAddTable">
@@ -28,13 +45,14 @@
                 <column-setting v-model:columns="columns" />
               </n-space>
             </n-space>
+            <!-- 表格 -->
             <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading"
               :pagination="pagination" />
             <TableForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
           </div>
         </n-card>
       </n-grid-item>
-    </n-grid>
+      </n-grid>
   </div>
 </template>
 
@@ -62,8 +80,8 @@ const columns: Ref<DataTableColumns<Admin.User>> = ref([
     key: 'username'
   },
   {
-    title: '真实姓名',
-    key: 'name'
+    title: '姓名',
+    key: 'fullname'
   },
   {
     title: '昵称',
@@ -105,7 +123,7 @@ const columns: Ref<DataTableColumns<Admin.User>> = ref([
           <NButton size={'small'} type='info' quaternary onClick={() => handleEditTable(row)}>
             编辑
           </NButton>
-          <NPopconfirm onPositiveClick={() => handleDeleteTable(row.name, row.id)}>
+          <NPopconfirm onPositiveClick={() => handleDeleteTable(row.fullname, row.id)}>
             {{
               default: () => '确认删除',
               trigger: () => <NButton size={'small'} type='error' quaternary>删除</NButton>
@@ -188,7 +206,7 @@ const handleEditTable = (row: Admin.User) => {
   openModal();
 }
 
-const handleDeleteTable = (name: Admin.User['name'], id: Admin.User['id']) => {
+const handleDeleteTable = (name: Admin.User['fullname'], id: Admin.User['id']) => {
   window.$message?.info(`已删除用户：${name}, ID 为 ${id}`);
 }
 </script>
