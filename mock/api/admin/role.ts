@@ -1,32 +1,37 @@
-
 import type { MockMethod } from 'vite-plugin-mock';
 
 const tableData: Admin.Role[] = [
   {
     id: 1,
     name: '管理员',
+    type: 0,
     permission: 'ROLE_ADMIN',
-    desc: '系统管理员',
+    description: '系统管理员',
     dataScopeType: 0,
-    dataScope: []
+    dataScope: [],
+    menus: []
   },
   {
     id: 2,
     name: '普通用户',
+    type: 1,
     permission: 'ROLE_COMMON_USER',
-    desc: '普通用户',
+    description: '普通用户',
     dataScopeType: 2,
-    dataScope: []
+    dataScope: [],
+    menus: []
   },
   {
     id: 3,
     name: '开发人员',
+    type: 1,
     permission: 'ROLE_DEV_USER',
-    desc: '开发人员',
+    description: '开发人员',
     dataScopeType: 1,
-    dataScope: [3]
+    dataScope: [3],
+    menus: []
   }
-]
+];
 
 const apis: MockMethod[] = [
   {

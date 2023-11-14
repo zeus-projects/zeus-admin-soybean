@@ -1,7 +1,13 @@
 <template>
   <n-modal v-model:show="modalVisible" preset="card" :title="title" class="w-700px">
-    <n-form ref="formRef" label-placement="left" require-mark-placement="right-hanging" :label-width="80"
-      :model="formModel" :rules="rules">
+    <n-form
+      ref="formRef"
+      label-placement="left"
+      require-mark-placement="right-hanging"
+      :label-width="80"
+      :model="formModel"
+      :rules="rules"
+    >
       <n-grid :cols="24" :x-gap="18">
         <n-form-item-grid-item :span="24" label="角色名称" path="name">
           <n-input v-model:value="formModel.name" />
@@ -9,15 +15,23 @@
         <n-form-item-grid-item :span="24" label="角色标识" path="permission">
           <n-input v-model:value="formModel.permission" />
         </n-form-item-grid-item>
-        <n-form-item-grid-item :span="24" label="角色描述" path="desc">
-          <n-input v-model:value="formModel.desc" type="textarea"/>
+        <n-form-item-grid-item :span="24" label="角色描述" path="description">
+          <n-input v-model:value="formModel.description" type="textarea" />
         </n-form-item-grid-item>
         <n-form-item-grid-item :span="24" label="数据权限" path="dataScopeType">
           <n-select v-model:value="formModel.dataScopeType" :options="RoleDataScopeType" />
         </n-form-item-grid-item>
-        <n-form-item-grid-item :span="24" label="自定义权限" path="dataScope" v-if="formModel.dataScopeType === 1">
-          <n-tree-select multiple cascade checkable v-model:value="formModel.dataScope" :options="options" key-field="id"
-            label-field="name" default-expand-all />
+        <n-form-item-grid-item v-if="formModel.dataScopeType === 1" :span="24" label="自定义权限" path="dataScope">
+          <n-tree-select
+            v-model:value="formModel.dataScope"
+            multiple
+            cascade
+            checkable
+            :options="options"
+            key-field="id"
+            label-field="name"
+            default-expand-all
+          />
         </n-form-item-grid-item>
       </n-grid>
       <n-space class="w-full pt-16px" :size="24" justify="end">
@@ -30,9 +44,9 @@
 <script setup lang="ts">
 import { ref, computed, reactive, watch } from 'vue';
 import type { FormInst } from 'naive-ui';
-import { createRequiredFormRule } from '@/utils';
-import { fetchDeptTree } from '@/service';
 import { RoleDataScopeType } from '@/constants';
+import { fetchDeptTree } from '@/service';
+import { createRequiredFormRule } from '@/utils';
 
 export interface Props {
   visible: boolean;
@@ -72,15 +86,15 @@ const title = computed(() => {
 
 const formRef = ref<HTMLElement & FormInst>();
 
-type FormModel = Pick<Admin.Role, 'name' | 'permission' | 'desc' | 'dataScopeType' | 'dataScope'>;
-const formModel = reactive<FormModel>(createDefaultFormModel())
+type FormModel = Pick<Admin.Role, 'name' | 'permission' | 'description' | 'dataScopeType' | 'dataScope'>;
+const formModel = reactive<FormModel>(createDefaultFormModel());
 function createDefaultFormModel(): FormModel {
   return {
     name: '',
     permission: '',
-    desc: '',
+    description: '',
     dataScopeType: 1,
-    dataScope: [3],
+    dataScope: [3]
   };
 }
 
@@ -90,7 +104,7 @@ const rules = {
   dataScopeType: createRequiredFormRule('请选择角色数据权限类型')
 };
 
-const options = ref(Array())
+const options = ref([]);
 async function loadDeptOptions() {
   const { data } = await fetchDeptTree();
   options.value = [
@@ -99,7 +113,7 @@ async function loadDeptOptions() {
       name: '根部门',
       children: data
     }
-  ]
+  ];
 }
 
 function handleUpdateFormModel(model: Partial<FormModel>) {
@@ -149,6 +163,4 @@ async function handleSubmit() {
   closeModal();
 }
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>

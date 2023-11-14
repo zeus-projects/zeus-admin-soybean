@@ -17,8 +17,7 @@
             <column-setting v-model:columns="columns" />
           </n-space>
         </n-space>
-        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading"
-          :pagination="pagination" />
+        <n-data-table ref="tableRef" :columns="columns" :data="tableData" :loading="loading" :pagination="pagination" />
         <TableForm v-model:visible="visible" :type="modalType" :edit-data="editData" />
       </div>
     </n-card>
@@ -30,11 +29,11 @@ import { ref, reactive, onMounted } from 'vue';
 import type { Ref } from 'vue';
 import { NSpace, NButton, NPopconfirm, NDataTable, NTag } from 'naive-ui';
 import type { DataTableColumns } from 'naive-ui';
-import { useBoolean, useLoading } from '@/hooks';
-import { fetchRolePage } from '@/service';
-import TableForm from "./table-form.vue";
-import type { ModalType } from './table-form.vue'
 import { RoleDataScopeType } from '@/constants';
+import { fetchRolePage } from '@/service';
+import { useBoolean, useLoading } from '@/hooks';
+import TableForm from './table-form.vue';
+import type { ModalType } from './table-form.vue';
 
 const { loading, startLoading, endLoading } = useLoading(false);
 const { bool: visible, setTrue: openModal } = useBoolean();
@@ -50,18 +49,16 @@ const columns: Ref<DataTableColumns<Admin.Role>> = ref([
   },
   {
     title: '角色描述',
-    key: 'desc'
+    key: 'description'
   },
   {
     title: '数据权限',
     key: 'dataScopeType',
     render: row => {
       const obj = RoleDataScopeType.find(item => {
-        return item.value === row.dataScopeType
-      })
-      return (
-        <NTag type='primary'>{obj?.label}</NTag>
-      )
+        return item.value === row.dataScopeType;
+      });
+      return <NTag type="primary">{obj?.label}</NTag>;
     }
   },
   {
@@ -71,13 +68,17 @@ const columns: Ref<DataTableColumns<Admin.Role>> = ref([
     render: row => {
       return (
         <NSpace justify={'center'}>
-          <NButton size={'small'} type='info' quaternary onClick={() => handleEditTable(row)}>
+          <NButton size={'small'} type="info" quaternary onClick={() => handleEditTable(row)}>
             编辑
           </NButton>
           <NPopconfirm onPositiveClick={() => handleDeleteTable(row.name, row.id)}>
             {{
               default: () => '确认删除',
-              trigger: () => <NButton size={'small'} type='error' quaternary>删除</NButton>
+              trigger: () => (
+                <NButton size={'small'} type="error" quaternary>
+                  删除
+                </NButton>
+              )
             }}
           </NPopconfirm>
         </NSpace>
@@ -92,18 +93,14 @@ const pagination = reactive({
   page: 1,
   pageSize: 10,
   showSizePicker: true,
-  pageSizes: [10, 20, 30, 40 ,50],
+  pageSizes: [10, 20, 30, 40, 50],
   onChange: (page: number) => {
-    pagination.page = page
+    pagination.page = page;
   },
   onUpdatePageSize: (pageSize: number) => {
-    pagination.pageSize = pageSize
-    pagination.page = 1
+    pagination.pageSize = pageSize;
+    pagination.page = 1;
   }
-})
-
-onMounted(() => {
-  getTableData()
 });
 
 const getTableData = async () => {
@@ -111,7 +108,11 @@ const getTableData = async () => {
   const { data } = await fetchRolePage(pagination);
   tableData.value = data!.records;
   endLoading();
-}
+};
+
+onMounted(() => {
+  getTableData();
+});
 
 const modalType = ref<ModalType>('add');
 function setModalType(type: ModalType) {
@@ -124,17 +125,17 @@ function setEditData(data: Admin.Role | null) {
 }
 
 const handleAddTable = () => {
-  openModal()
+  openModal();
   setModalType('add');
-}
+};
 
 const handleEditTable = (row: Admin.Role) => {
   setEditData(row);
   setModalType('edit');
   openModal();
-}
+};
 
 const handleDeleteTable = (name: Admin.Role['name'], id: Admin.Role['id']) => {
   window.$message?.info(`已删除菜单：${name}, ID 为 ${id}`);
-}
+};
 </script>
