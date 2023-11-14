@@ -5,7 +5,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Vue debugger",
-      "url": "http://localhost:3200",
+      "url": "http://localhost:8080",
       "webRoot": "${workspaceFolder}"
     },
     {
